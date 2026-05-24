@@ -2,40 +2,79 @@
 const { href } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="inline-flex items-center justify-center gap-2.5 w-[9rem]
+<a href={href} class="rotating-border inline-flex items-center justify-center w-[9rem]
     px-[1.75rem] py-[0.188rem]
-    rounded-lg border border-white
-    text-white
-    md:border-blue-800 md:text-blue-800
-    relative overflow-hidden bg-transparent hover:bg-blue-800/20
-    transition-colors duration-300"
->
-  <!-- Thin rotating border only (always animating) -->
-  <span class="absolute inset-0 pointer-events-none rounded-lg
-    bg-gradient-conic from-blue-500 via-cyan-400 to-blue-500 via-50% from-0% to-100%
-    opacity-80 animate-rotate-border"></span>
-
-  <!-- Inner content (unaffected) -->
-  <span class="relative z-10">
+    rounded-full text-white md:text-blue-400
+    relative">
+  <span class="content">
     <slot />
   </span>
 </a>
 
 <style>
-  @keyframes rotate-border {
-    to {
-      transform: rotate(360deg);
-    }
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
   }
-  .animate-rotate-border {
-    animation: rotate-border 14s linear infinite;
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
+
+  /* BASE */
+  .rotating-border {
+    position: relative;
+    border-radius: 9999px;
+  }
+
+  /* ROTATING BORDER */
+  .rotating-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+
+    background: conic-gradient(from var(--angle), transparent 0deg, transparent 290deg, #22d3ee 310deg, #3b82f6 330deg, transparent 360deg);
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    padding: 1px;
+
+    animation: rotate var(--speed, 10s) linear infinite;
+
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* INNER TEXT */
+  .content {
+    position: relative;
+    z-index: 1;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 0.188rem 1.75rem;
+
+    border-radius: 9999px;
+
+    /* VIGTIG: ingen grå hover-farve her */
+    background: transparent;
+  }
+
+  /* HOVER = kun border animation */
+  .rotating-border:hover::before {
+    --speed: 2s;
+    filter: brightness(1.35) drop-shadow(0 0 10px rgb(59 130 246 / 0.5));
+  }
+
+  /* ANIMATION */
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
   }
 </style>

@@ -7,12 +7,21 @@ import Button from "../components/Button.astro";
 ---
 
 <MainLayout title="DURSIA">
-  <main class="h-screen grid grid-cols-2 grid-rows-[5fr_1fr] container mx-auto p-6 gap-y-25 gap-x-10 content-center md:flex md:flex-row md:justify-center md:text-sky-700">
-    <Image class="w-full p-10 self-center col-span-full md:order-2 md:w-[40%]" src={dursiaLogo} alt="dursia logo" />
-    <div class="flex justify-center items-center md:order-1">
+  <main class="min-h-screen container mx-auto p-6 flex flex-col md:flex-row items-center justify-center gap-10 md:text-sky-700">
+    <!-- Venstre side -->
+    <div class="flex justify-center items-center">
       <Button href="demo">Demo</Button>
     </div>
-    <div class="flex justify-center items-center md:order-3">
+
+    <!-- Midte: logo + kontakt -->
+    <div class="flex flex-col items-center gap-8">
+      <Image class="w-full max-w-[500px] p-10" src={dursiaLogo} alt="dursia logo" />
+
+      <Button href="mailto:bennimja@yahoo.com?subject=DURSIA request"> Contact </Button>
+    </div>
+
+    <!-- Højre side -->
+    <div class="flex justify-center items-center">
       <Button href="features">Features</Button>
     </div>
   </main>
