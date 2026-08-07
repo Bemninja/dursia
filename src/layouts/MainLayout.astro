@@ -1,6 +1,4 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import "../styles/tailwind.css";
 const { title } = Astro.props;
 ---
@@ -8,22 +6,40 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" sizes="any" href="/dursia-logo.png" />
-
-    <!-- Til iOS og andre mobile enheder -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/dursia-logo.png" />
-
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{Astro.props.title}</title>
-
+    <link rel="icon" type="image/png" href="/dursia-logo.png" />
+    <link rel="apple-touch-icon" href="/dursia-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
     <meta name="robots" content="noindex, nofollow" />
-
-    <script defer src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"></script>
   </head>
-  <body class="bg-gradient-to-b from-[#06134A] via-[#fff] to-[#06134A]">
-    <Header />
 
-    <slot />
+  <body class="m-0 p-0 overflow-hidden bg-[#0a1628]">
+    <!-- Moving map background (shared on all pages) -->
+    <div class="fixed inset-0 overflow-hidden z-0">
+      <img src="/assets/images/dursiaweb-map2-redroute.png" alt="Map background" class="absolute top-0 left-0 h-full w-[120%] max-w-none object-cover animate-map-move" style="will-change: transform;" />
+    </div>
+
+    <!-- Page content -->
+    <div class="relative z-10">
+      <slot />
+    </div>
   </body>
 </html>
+
+<style is:global>
+  @keyframes map-move {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-16%, 0, 0);
+    }
+  }
+
+  .animate-map-move {
+    animation: map-move 90s linear infinite alternate;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+</style>
