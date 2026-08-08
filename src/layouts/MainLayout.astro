@@ -3,7 +3,7 @@ import "../styles/tailwind.css";
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/dursia-logo.png" />
@@ -13,14 +13,19 @@ const { title } = Astro.props;
     <meta name="robots" content="noindex, nofollow" />
   </head>
 
-  <body class="m-0 p-0 overflow-hidden bg-[#0a1628]">
-    <!-- Moving map background (shared on all pages) -->
-    <div class="fixed inset-0 overflow-hidden z-0">
-      <img src="/assets/images/dursiaweb-map2-redroute.png" alt="Map background" class="absolute top-0 left-0 h-full w-[120%] max-w-none object-cover animate-map-move" style="will-change: transform;" />
+  <!-- 
+    ÆNDRING 1: Fjerner `overflow-hidden` fra <body> og tilføjer `min-h-screen`.
+    Det sikrer, at mobiler kan scrolle, hvis indholdet er højere end skærmen,
+    uden at baggrundskortet hopper eller ødelægges.
+  -->
+  <body class="m-0 p-0 min-h-screen bg-[#0a1628] relative overflow-x-hidden">
+    <!-- Moving map background (bliver stående i baggrunden under scroll) -->
+    <div class="fixed inset-0 overflow-hidden z-0 pointer-events-none">
+      <img src="/assets/images/dursiaweb-map2-redroute.png" alt="Map background" class="absolute top-0 left-0 h-full w-[180%] sm:w-[140%] md:w-[120%] max-w-none object-cover animate-map-move" />
     </div>
 
-    <!-- Page content -->
-    <div class="relative z-10">
+    <!-- Page content (får fuld bredde og responsiv padding i siderne) -->
+    <div class="relative z-10 w-full min-h-screen">
       <slot />
     </div>
   </body>

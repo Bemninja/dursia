@@ -3,66 +3,72 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="DURSIA – A dating app for introverts">
-  <main class="relative w-full h-screen overflow-hidden">
-    <!-- Top text boxes -->
-    <div class="absolute top-6 left-0 right-0 z-30 flex justify-center items-center gap-4 px-4 md:gap-6 md:px-8">
-      <!-- Small left -->
-      <div class="rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3 text-white text-sm shadow-lg w-[250px] min-h-[68px] flex flex-col justify-center text-center border border-white/20">
+  <!-- På mobil tillader vi vertikal scroll/flex-col; på desktop bevares h-screen og absolute placement -->
+  <main class="relative w-full min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between py-6 md:py-0">
+    <!-- TOP TEXT BOXES -->
+    <!-- Mobil: Stables lodret i rækkefølgen Left -> Large (Midte) -> Right -->
+    <div class="relative md:absolute md:top-6 left-0 right-0 z-30 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-6 px-4 md:px-8">
+      <!-- Small left (Aktiv på mobil som nr. 1, på desktop som nr. 1) -->
+      <div
+        class="order-1 md:order-1 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-5 py-2.5 md:px-6 md:py-3 text-white text-xs md:text-sm shadow-lg w-full max-w-xs md:w-[250px] min-h-[56px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+      >
         <p class="font-semibold leading-tight">DURSIA</p>
         <p class="text-white/90 leading-tight">A dating app for introverts.</p>
       </div>
 
-      <!-- Large center -->
-      <div class="rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3.5 text-white text-sm md:text-base shadow-lg max-w-xl text-center leading-snug border border-white/20">
+      <!-- Large center (Mobil: Ligger under Left (i midten). Desktop: Ligger i midten via order-2) -->
+      <div class="order-2 md:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-5 py-3 md:px-6 md:py-3.5 text-white text-xs md:text-base shadow-lg max-w-xl text-center leading-snug border border-white/20">
         A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through fun, non-binding and safe treasure
         hunts, before meeting face to face.
       </div>
 
-      <!-- Small right -->
-      <div class="rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3 text-white text-sm shadow-lg w-[250px] min-h-[68px] flex flex-col justify-center text-center border border-white/20">
+      <!-- Small right (Mobil: Ligger nederst af tekstboksene. Desktop: Ligger til højre via order-3) -->
+      <div
+        class="order-3 md:order-3 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-5 py-2.5 md:px-6 md:py-3 text-white text-xs md:text-sm shadow-lg w-full max-w-xs md:w-[250px] min-h-[56px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+      >
         <p class="leading-tight">Get out · Make routes</p>
         <p class="leading-tight">Cross paths · Find treasures</p>
       </div>
     </div>
 
-    <!-- Single video player that moves left ↔ right -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+    <!-- CENTER VIDEO & LOGO -->
+    <div class="relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 my-6 md:my-0 flex justify-center items-center">
       <div class="animate-video-swing">
         <video class="video-item" src="/assets/video/dursia-6-shy-videos.mp4" muted loop playsinline autoplay></video>
       </div>
     </div>
 
-    <!-- Central logo -->
+    <!-- Central logo watermark -->
     <div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-      <img src="/dursia-logo.png" alt="DURSIA" class="w-[50vw] max-w-[720px] opacity-20" />
+      <img src="/dursia-logo.png" alt="DURSIA" class="w-[70vw] md:w-[50vw] max-w-[720px] opacity-20" />
     </div>
 
-    <!-- Bottom buttons -->
-    <div class="absolute bottom-10 left-0 right-0 z-50 flex justify-center gap-14">
-      <!-- Demo button -->
+    <!-- BOTTOM BUTTONS -->
+    <!-- Mobil: Stables lodret i rækkefølgen Demo -> Sign up (Midte) -> Features -->
+    <div class="relative md:absolute md:bottom-10 left-0 right-0 z-50 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-14 px-4">
+      <!-- Demo button (Mobil: Øverst. Desktop: Til venstre via order-1) -->
       <a
         href="/demo"
-        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-auto min-w-[160px] justify-center"
+        class="order-1 md:order-1 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-64 md:w-auto md:min-w-[160px] justify-center"
       >
         <span class="text-xl leading-none flex-shrink-0">▶</span>
         Demo
       </a>
 
-      <!-- Sign up -->
+      <!-- Sign up (Mobil: I midten af knapperne. Desktop: I midten via order-2) -->
       <button
         id="open-signup"
-        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-40"
+        class="order-2 md:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-64 md:w-40 justify-center"
       >
         <img src="/assets/icons/sign-up-icon.png" alt="Sign up" class="w-5 h-5 brightness-0 invert" />
         Sign up
       </button>
 
-      <!-- Features button -->
+      <!-- Features button (Mobil: Nederst. Desktop: Til højre via order-3) -->
       <a
         href="/features"
-        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-auto min-w-[160px] justify-center"
+        class="order-3 md:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-64 md:w-auto md:min-w-[160px] justify-center"
       >
-        <!-- SVG med flex-shrink-0 og større bredde/højde -->
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v6H4v-6zm10 0h6v6h-6v-6z"></path>
         </svg>
@@ -70,58 +76,48 @@ import MainLayout from "../layouts/MainLayout.astro";
       </a>
     </div>
 
-    <!-- Corner logos -->
-    <!-- Top left: DURSIA -->
-    <img src="/dursia-logo.png" alt="DURSIA" class="absolute top-5 left-5 z-50 w-10 md:w-12 opacity-80" />
+    <!-- CORNER LOGOS -->
+    <img src="/dursia-logo.png" alt="DURSIA" class="absolute top-4 left-4 md:top-5 md:left-5 z-50 w-8 md:w-12 opacity-80" />
+    <img src="/assets/icons/sevavon-logo-png.png" alt="SEVAVON" class="hidden sm:block absolute bottom-5 left-5 z-50 w-16 md:w-20 opacity-70" />
 
-    <!-- Bottom left: SEVAVON -->
-    <img src="/assets/icons/sevavon-logo-png.png" alt="SEVAVON" class="absolute bottom-5 left-5 z-50 w-16 md:w-20 opacity-70" />
-
-    <!-- Bottom right: MIKROLEGAT -->
-    <a href="https://mikrolegat.ffefonden.dk/" target="_blank" rel="noopener noreferrer">
-      <img src="/assets/icons/mikrolegat-logo.png" alt="MIKROLEGAT" class="absolute bottom-5 right-5 z-50 w-16 md:w-20 opacity-70 hover:opacity-100 transition" />
+    <a href="https://mikrolegat.ffefonden.dk/" target="_blank" rel="noopener noreferrer" class="hidden sm:block absolute bottom-5 right-5 z-50">
+      <img src="/assets/icons/mikrolegat-logo.png" alt="MIKROLEGAT" class="w-16 md:w-20 opacity-70 hover:opacity-100 transition" />
     </a>
 
     <!-- Sign up Modal -->
-    <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div class="bg-white/95 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl relative overflow-hidden">
-        <!-- Close button -->
+    <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div class="bg-white/95 rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl relative overflow-hidden">
         <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
-
-        <!-- Logo as background watermark -->
         <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
 
-        <!-- Content -->
         <div class="relative z-10">
-          <h2 class="text-2xl font-semibold text-gray-900 mb-1 text-center">Get notified</h2>
-          <p class="text-gray-500 text-sm mb-6 text-center">
+          <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-1 text-center">Get notified</h2>
+          <p class="text-gray-500 text-xs md:text-sm mb-6 text-center">
             Leave your details and we’ll let you know,<br />when DURSIA is ready.
           </p>
 
-          <!-- Opdateret form med dit Formspree URL -->
-          <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-4">
+          <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-3 md:space-y-4">
             <div>
-              <label class="block text-sm text-gray-600 mb-1">Name</label>
-              <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
-            </div>
-
-            <!-- Taller Comments field -->
-            <div>
-              <label class="block text-sm text-gray-600 mb-1">Comments</label>
-              <textarea name="comments" rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your comments"></textarea>
+              <label class="block text-xs md:text-sm text-gray-600 mb-1">Name</label>
+              <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
             </div>
 
             <div>
-              <label class="block text-sm text-gray-600 mb-1">Phone</label>
-              <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
+              <label class="block text-xs md:text-sm text-gray-600 mb-1">Comments</label>
+              <textarea name="comments" rows="3" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your comments"></textarea>
             </div>
 
             <div>
-              <label class="block text-sm text-gray-600 mb-1">Email</label>
-              <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+              <label class="block text-xs md:text-sm text-gray-600 mb-1">Phone</label>
+              <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
             </div>
 
-            <button type="submit" class="w-full mt-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-3 transition"> Notify me </button>
+            <div>
+              <label class="block text-xs md:text-sm text-gray-600 mb-1">Email</label>
+              <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+            </div>
+
+            <button type="submit" class="w-full mt-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Notify me </button>
           </form>
         </div>
       </div>
@@ -130,35 +126,17 @@ import MainLayout from "../layouts/MainLayout.astro";
 
   <style>
     .video-item {
-      height: clamp(280px, 32vh, 340px);
+      height: clamp(240px, 30vh, 340px);
       width: auto;
-      max-width: 90vw;
+      max-width: 85vw;
       border-radius: 14px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
       display: block;
       object-fit: cover;
     }
-
-    @keyframes video-swing {
-      0% {
-        transform: translateX(-295px);
-      }
-      50% {
-        transform: translateX(-200px);
-      }
-      100% {
-        transform: translateX(-295px);
-      }
-    }
-
-    .animate-video-swing {
-      animation: none;
-      transform: translateX(0);
-    }
   </style>
 
   <script>
-    // Autoplay video safely
     const video = document.querySelector("video");
     if (video) {
       video.muted = true;
@@ -168,7 +146,6 @@ import MainLayout from "../layouts/MainLayout.astro";
       });
     }
 
-    // Modal logic
     const openBtn = document.getElementById("open-signup");
     const closeBtn = document.getElementById("close-signup");
     const modal = document.getElementById("signup-modal");
@@ -192,7 +169,6 @@ import MainLayout from "../layouts/MainLayout.astro";
       }
     });
 
-    // Formspree AJAX Submit (baggrundsafsendelse uden sideskift)
     form?.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -207,9 +183,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         const response = await fetch(form.action, {
           method: form.method,
           body: formData,
-          headers: {
-            Accept: "application/json",
-          },
+          headers: { Accept: "application/json" },
         });
 
         if (response.ok) {
