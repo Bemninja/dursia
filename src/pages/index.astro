@@ -3,21 +3,21 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="DURSIA – A dating app for introverts">
-  <!-- På mobil tillader vi vertikal scroll/flex-col; på desktop bevares h-screen og overflow-hidden uden scroll -->
-  <main class="relative w-full min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between py-6 md:py-0">
+  <!-- På mobil og landscape tillader vi vertikal scroll/flex-col; på desktop (lg) bevares h-screen og overflow-hidden uden scroll -->
+  <main class="relative w-full min-h-screen lg:h-screen lg:overflow-hidden flex flex-col justify-between py-6 lg:py-0">
     <!-- TOP TEXT BOXES -->
-    <div class="relative md:absolute md:top-6 left-0 right-0 z-30 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-6 px-4 md:px-8">
+    <div class="relative lg:absolute lg:top-6 left-0 right-0 z-30 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-6 px-4 lg:px-8">
       <!-- Small left (DURSIA) -->
       <div
-        class="order-1 md:order-1 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3 text-white shadow-lg w-full max-w-[92vw] md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+        class="order-1 lg:order-1 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 lg:px-6 py-3 text-white shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
       >
-        <p class="font-semibold text-base md:text-sm leading-tight">DURSIA</p>
-        <p class="text-white/90 text-sm md:text-sm leading-normal">A dating app for introverts.</p>
+        <p class="font-semibold text-base lg:text-sm leading-tight">DURSIA</p>
+        <p class="text-white/90 text-sm lg:text-sm leading-normal">A dating app for introverts.</p>
       </div>
 
-      <!-- Large center (Forklaring - HER ER BREDDEN OG PADDING TILPASSET) -->
+      <!-- Large center (Forklaring) -->
       <div
-        class="order-2 md:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3.5 text-white text-sm md:text-base shadow-lg w-full max-w-[92vw] md:max-w-xl text-center leading-relaxed md:leading-snug border border-white/20"
+        class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 lg:px-6 py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20"
       >
         A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through fun, non-binding and safe treasure
         hunts, before meeting face to&nbsp;face.
@@ -25,41 +25,40 @@ import MainLayout from "../layouts/MainLayout.astro";
 
       <!-- Small right (Get out...) -->
       <div
-        class="order-3 md:order-3 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3 text-white text-sm md:text-sm shadow-lg w-full max-w-[92vw] md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+        class="order-3 lg:order-3 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 lg:px-6 py-3 text-white text-sm lg:text-sm shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
       >
         <p class="leading-snug">Get out · Make routes</p>
         <p class="leading-snug">Cross paths · Find treasures</p>
       </div>
     </div>
 
-    <!-- CENTER VIDEO & LOGO -->
-    <div class="relative md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 my-6 md:my-0 flex justify-center items-center">
-      <div class="animate-video-swing">
+    <!-- CENTER VIDEO -->
+    <div class="relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 my-6 lg:my-0 flex justify-center items-center w-full">
+      <div class="animate-video-swing flex justify-center">
         <video class="video-item" src="/assets/video/dursia-6-shy-videos.mp4" muted loop playsinline autoplay></video>
       </div>
     </div>
 
     <!-- Central logo watermark -->
     <div class="fixed inset-0 z-10 flex items-center justify-center pointer-events-none">
-      <img src="/dursia-logo.png" alt="DURSIA" class="w-[75vw] md:w-[50vw] max-w-[720px] opacity-20" />
+      <img src="/dursia-logo.png" alt="DURSIA" class="w-[75vw] lg:w-[50vw] max-w-[720px] opacity-20" />
     </div>
 
     <!-- BOTTOM BUTTONS -->
-    <!-- Mobil: Skubbes til bunden via mt-auto pb-6; Desktop: Absolut placeret nederst -->
-    <div class="relative mt-auto pb-6 md:pb-0 md:absolute md:bottom-10 left-0 right-0 z-50 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-14 px-4">
-      <!-- Demo button (Mobil: Øverst / order-1 | Desktop: Venstre / md:order-1) -->
+    <div class="relative mt-auto pb-6 lg:pb-0 lg:absolute lg:bottom-10 left-0 right-0 z-50 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-14 px-4">
+      <!-- Demo button -->
       <a
         href="/demo"
-        class="order-1 md:order-1 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-auto md:min-w-[160px] justify-center"
+        class="order-1 lg:order-1 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-auto lg:min-w-[160px] justify-center"
       >
         <span class="text-xl leading-none flex-shrink-0">▶</span>
         Demo
       </a>
 
-      <!-- Features button (Mobil: Midten / order-2 | Desktop: Højre / md:order-3) -->
+      <!-- Features button -->
       <a
         href="/features"
-        class="order-2 md:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-auto md:min-w-[160px] justify-center"
+        class="order-2 lg:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-auto lg:min-w-[160px] justify-center"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 flex-shrink-0 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v6H4v-6zm10 0h6v6h-6v-6z"></path>
@@ -67,10 +66,10 @@ import MainLayout from "../layouts/MainLayout.astro";
         Features
       </a>
 
-      <!-- Sign up button (Mobil: Nederst / order-3 | Desktop: Midten / md:order-2) -->
+      <!-- Sign up button -->
       <button
         id="open-signup"
-        class="order-3 md:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-40 justify-center"
+        class="order-3 lg:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-40 justify-center"
       >
         <img src="/assets/icons/pencil-icon-white.png" alt="Sign up" class="w-5 h-5 brightness-0 invert" />
         Sign up
@@ -79,34 +78,34 @@ import MainLayout from "../layouts/MainLayout.astro";
 
     <!-- Sign up Modal -->
     <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div class="bg-white/95 rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl relative overflow-hidden">
+      <div class="bg-white/95 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden">
         <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
         <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
 
         <div class="relative z-10">
-          <h2 class="text-xl md:text-2xl font-semibold text-gray-900 mb-1 text-center">Get notified</h2>
-          <p class="text-gray-500 text-xs md:text-sm mb-6 text-center">
+          <h2 class="text-xl lg:text-2xl font-semibold text-gray-900 mb-1 text-center">Get notified</h2>
+          <p class="text-gray-500 text-xs lg:text-sm mb-6 text-center">
             Leave your details and we’ll let you know,<br />when DURSIA is ready.
           </p>
 
-          <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-3 md:space-y-4">
+          <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-3 lg:space-y-4">
             <div>
-              <label class="block text-xs md:text-sm text-gray-600 mb-1">Name</label>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Name</label>
               <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
             </div>
 
             <div>
-              <label class="block text-xs md:text-sm text-gray-600 mb-1">Comments</label>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Comments</label>
               <textarea name="comments" rows="3" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your comments"></textarea>
             </div>
 
             <div>
-              <label class="block text-xs md:text-sm text-gray-600 mb-1">Phone</label>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Phone</label>
               <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
             </div>
 
             <div>
-              <label class="block text-xs md:text-sm text-gray-600 mb-1">Email</label>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Email</label>
               <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
             </div>
 
@@ -118,52 +117,89 @@ import MainLayout from "../layouts/MainLayout.astro";
   </main>
 
   <style>
+    /* 1. MOBIL PORTRAIT (STÅENDE) */
     .video-item {
-      height: clamp(240px, 41vh, 340px);
-      width: auto;
-      max-width: 85vw;
+      /* Laver et mere rektangulært udtryk (viser mere af siderne end den høje boks) */
+      height: auto;
+      width: 88vw;
+      max-width: 380px;
+      aspect-ratio: 4 / 3; /* Perfekt mellemting: bredere end kvadratisk, men ikke helt 16:9 */
       border-radius: 14px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
       display: block;
-      object-fit: cover;
+      object-fit: cover; /* Fyld beholderen helt ud – INGEN tomme felter/rammer! */
     }
 
-    /* KUN TIL MOBILER I LIGGENDE TILSTAND (LANDSCAPE) */
-    @media (max-width: 767px) and (orientation: landscape) {
-      /* Tillad vertikal scroll i landscape på mobil */
+    /* 2. DESKTOP (1024px OG OP): Dine oprindelige 41vh */
+    @media (min-width: 1024px) {
+      .video-item {
+        height: clamp(240px, 41vh, 340px) !important;
+        width: auto !important;
+        max-width: 85vw !important;
+        aspect-ratio: auto !important;
+        object-fit: cover !important;
+      }
+    }
+
+    /* 3. MOBIL LANDSCAPE (LIGGENDE MOBIL) */
+    @media (orientation: landscape) and (max-width: 1023px) {
       main {
+        height: auto !important;
         min-height: 100vh !important;
         overflow-y: auto !important;
         padding-top: 1.5rem !important;
-        padding-bottom: 2rem !important;
+        padding-bottom: 5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 1.5rem !important;
       }
 
-      /* Læg indholdselementerne (tekst, video, knapper) i et pænt lodret flow */
-      main > div {
-        position: static !important;
-        transform: none !important;
-        margin-top: 1rem !important;
-        margin-bottom: 1rem !important;
+      /* Tekstbokse på række */
+      main > div:first-child {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
       }
 
-      /* UNDTAGELSE: Lås det transparente center-logo fast midt på skærmen i baggrunden */
-      main > div.pointer-events-none {
-        position: fixed !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        margin: 0 !important;
-        z-index: 10 !important;
+      main > div:first-child > div:first-child,
+      main > div:first-child > div:last-child {
+        width: 22% !important;
+        max-width: 180px !important;
+        min-width: 140px !important;
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.75rem !important;
       }
 
-      /* Juster videoens max-højde, så den har en behagelig størrelse i landscape */
+      main > div:first-child > div:nth-child(2) {
+        width: 52% !important;
+        max-width: 480px !important;
+        font-size: 0.75rem !important;
+        line-height: 1.25 !important;
+        padding: 0.5rem 0.85rem !important;
+      }
+
+      /* Knapper på række */
+      main > div:last-of-type {
+        flex-direction: row !important;
+        gap: 1rem !important;
+      }
+
       .video-item {
-        height: 60vh !important;
-        max-height: 260px !important;
+        height: 50vh !important;
+        max-height: 220px !important;
+        width: auto !important;
+        aspect-ratio: auto !important;
+        object-fit: cover !important;
       }
     }
   </style>
+
   <script>
     const video = document.querySelector("video");
     if (video) {
