@@ -30,6 +30,15 @@ const { title } = Astro.props;
     <div class="relative z-10 w-full min-h-screen">
       <slot />
     </div>
+
+    <!-- FÆLLES NEDERSTE HJØRNE-LOGOER (Synlige på alle sider & skærmstørrelser) -->
+    <!-- SEVAVON Logo (Nederst til venstre) -->
+    <img src="/assets/icons/sevavon-logo-png.png" alt="SEVAVON" class="fixed bottom-3 left-3 md:bottom-5 md:left-5 z-50 w-12 sm:w-16 md:w-20 opacity-70 pointer-events-none" />
+
+    <!-- MIKROLEGAT Logo (Nederst til højre) -->
+    <a href="https://mikrolegat.ffefonden.dk/" target="_blank" rel="noopener noreferrer" class="fixed bottom-3 right-3 md:bottom-5 md:right-5 z-50">
+      <img src="/assets/icons/mikrolegat-logo.png" alt="MIKROLEGAT" class="w-12 sm:w-16 md:w-20 opacity-70 hover:opacity-100 transition" />
+    </a>
   </body>
 </html>
 
