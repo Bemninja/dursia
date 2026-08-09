@@ -3,32 +3,29 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="DURSIA – A dating app for introverts">
-  <!-- På mobil tillader vi vertikal scroll/flex-col; på desktop bevares h-screen og absolute placement -->
+  <!-- På mobil tillader vi vertikal scroll/flex-col; på desktop bevares h-screen og overflow-hidden uden scroll -->
   <main class="relative w-full min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between py-6 md:py-0">
     <!-- TOP TEXT BOXES -->
     <div class="relative md:absolute md:top-6 left-0 right-0 z-30 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-6 px-4 md:px-8">
       <!-- Small left (DURSIA) -->
-      <!-- Mobil: w-full max-w-sm | Tekst: text-sm -> text-base -->
       <div
-        class="order-1 md:order-1 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3 text-white shadow-lg w-full max-w-sm md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+        class="order-1 md:order-1 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3 text-white shadow-lg w-full max-w-[92vw] md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
       >
         <p class="font-semibold text-base md:text-sm leading-tight">DURSIA</p>
         <p class="text-white/90 text-sm md:text-sm leading-normal">A dating app for introverts.</p>
       </div>
 
-      <!-- Large center (Forklaring) -->
-      <!-- Mobil: w-full max-w-sm | Tekst: text-sm (før text-xs) med bedre linieafstand -->
+      <!-- Large center (Forklaring - HER ER BREDDEN OG PADDING TILPASSET) -->
       <div
-        class="order-2 md:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3.5 text-white text-sm md:text-base shadow-lg w-full max-w-sm md:max-w-xl text-center leading-relaxed md:leading-snug border border-white/20"
+        class="order-2 md:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3.5 text-white text-sm md:text-base shadow-lg w-full max-w-[92vw] md:max-w-xl text-center leading-relaxed md:leading-snug border border-white/20"
       >
         A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through fun, non-binding and safe treasure
-        hunts, before meeting face to face.
+        hunts, before meeting face to&nbsp;face.
       </div>
 
       <!-- Small right (Get out...) -->
-      <!-- Mobil: w-full max-w-sm | Tekst: text-sm -->
       <div
-        class="order-3 md:order-3 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-6 py-3 text-white text-sm md:text-sm shadow-lg w-full max-w-sm md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
+        class="order-3 md:order-3 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 md:px-6 py-3 text-white text-sm md:text-sm shadow-lg w-full max-w-[92vw] md:w-[250px] min-h-[64px] md:min-h-[68px] flex flex-col justify-center text-center border border-white/20"
       >
         <p class="leading-snug">Get out · Make routes</p>
         <p class="leading-snug">Cross paths · Find treasures</p>
@@ -48,9 +45,9 @@ import MainLayout from "../layouts/MainLayout.astro";
     </div>
 
     <!-- BOTTOM BUTTONS -->
-    <!-- Mobil: Stables lodret i rækkefølgen Demo -> Sign up (Midte) -> Features -->
-    <div class="relative md:absolute md:bottom-10 left-0 right-0 z-50 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-14 px-4">
-      <!-- Demo button (Mobil: Øverst. Desktop: Til venstre via order-1) -->
+    <!-- Mobil: Skubbes til bunden via mt-auto pb-6; Desktop: Absolut placeret nederst -->
+    <div class="relative mt-auto pb-6 md:pb-0 md:absolute md:bottom-10 left-0 right-0 z-50 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-14 px-4">
+      <!-- Demo button (Mobil: Øverst / order-1 | Desktop: Venstre / md:order-1) -->
       <a
         href="/demo"
         class="order-1 md:order-1 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-auto md:min-w-[160px] justify-center"
@@ -59,29 +56,28 @@ import MainLayout from "../layouts/MainLayout.astro";
         Demo
       </a>
 
-      <!-- Sign up (Mobil: I midten af knapperne. Desktop: I midten via order-2) -->
-      <button
-        id="open-signup"
-        class="order-2 md:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-40 justify-center"
-      >
-        <img src="/assets/icons/pencil-icon-white.png" alt="Sign up" class="w-5 h-5 brightness-0 invert" />
-        Sign up
-      </button>
-
-      <!-- Features button (Mobil: Nederst. Desktop: Til højre via order-3) -->
+      <!-- Features button (Mobil: Midten / order-2 | Desktop: Højre / md:order-3) -->
       <a
         href="/features"
-        class="order-3 md:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-auto md:min-w-[160px] justify-center"
+        class="order-2 md:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-auto md:min-w-[160px] justify-center"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 flex-shrink-0 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v6H4v-6zm10 0h6v6h-6v-6z"></path>
         </svg>
         Features
       </a>
+
+      <!-- Sign up button (Mobil: Nederst / order-3 | Desktop: Midten / md:order-2) -->
+      <button
+        id="open-signup"
+        class="order-3 md:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 md:w-40 justify-center"
+      >
+        <img src="/assets/icons/pencil-icon-white.png" alt="Sign up" class="w-5 h-5 brightness-0 invert" />
+        Sign up
+      </button>
     </div>
 
     <!-- CORNER LOGOS -->
-    <img src="/dursia-logo.png" alt="DURSIA" class="absolute top-4 left-4 md:top-5 md:left-5 z-50 w-8 md:w-12 opacity-80" />
     <img src="/assets/icons/sevavon-logo-png.png" alt="SEVAVON" class="hidden sm:block absolute bottom-5 left-5 z-50 w-16 md:w-20 opacity-70" />
 
     <a href="https://mikrolegat.ffefonden.dk/" target="_blank" rel="noopener noreferrer" class="hidden sm:block absolute bottom-5 right-5 z-50">

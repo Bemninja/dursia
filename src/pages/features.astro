@@ -6,77 +6,119 @@ import IconButton from "../components/IconButton.astro";
 ---
 
 <MainLayout title="DURSIA - Features">
-  <!-- Siden sættes til h-screen og overflow-y-scroll med snap-y -->
-  <main class="w-full h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth px-4 md:px-12 lg:px-24">
-    <!-- MOBIL: Enkelt-billeder med snap-center -->
-    <div class="md:hidden flex flex-col items-center gap-8 py-8">
-      <img src="../assets/images/dursia1.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia2.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia3.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia4.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia5.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia6.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia7.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia8.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia9.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia10.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
-      <img src="../assets/images/dursia11.png" alt="dursia screenshot" class="snap-center w-auto h-[85vh] object-contain my-4" />
+  <!-- 
+    1. tabindex="0" gør main-elementet fokuserbart for piletaster.
+    2. focus:outline-none fjerner den grimme markering/ramme ved fokus.
+    3. snap-y snap-mandatory med scroll-smooth sikrer glidende snap.
+  -->
+  <main id="feature-scroll-container" tabindex="0" class="w-full h-screen h-[100dvh] overflow-y-scroll snap-y snap-mandatory scroll-smooth focus:outline-none px-4 md:px-12 lg:px-24">
+    <!-- MOBIL VIEW: Hver sektion fylder nøjagtig 100dvh med snap-always -->
+    <div class="md:hidden">
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia1.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
 
-      <a href="/" class="snap-center my-8 max-w-[70%] flex justify-center">
-        <Image class="max-h-[50vh] object-contain" src={dursiaLogo} alt="dursia logo" />
-      </a>
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia2.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
 
-      <img src="../assets/images/DURSIA-art-nouveau-poster.jpeg" alt="DURSIA art nouveau poster" class="snap-center w-auto h-[85vh] object-contain my-4" />
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia3.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia4.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia5.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia6.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia7.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia8.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia9.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia10.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/dursia11.png" alt="dursia screenshot" class="max-h-[80vh] w-auto object-contain" />
+      </section>
+
+      <!-- Logo -->
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <a href="/" class="max-w-[70%] block">
+          <Image class="max-h-[50vh] object-contain" src={dursiaLogo} alt="dursia logo" />
+        </a>
+      </section>
+
+      <!-- Poster -->
+      <section class="snap-start snap-always h-[100dvh] w-full flex items-center justify-center py-6">
+        <img src="../assets/images/DURSIA-art-nouveau-poster.jpeg" alt="DURSIA art nouveau poster" class="max-h-[80vh] w-auto object-contain rounded-lg shadow-xl" />
+      </section>
     </div>
 
-    <!-- DESKTOP: Rækker med 3 billeder der snapper (snap-start / snap-center) -->
+    <!-- DESKTOP VIEW: Rækker af 3 billeder -->
     <div class="hidden md:block max-w-7xl mx-auto">
       <!-- Row 1 -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
         <div class="grid grid-cols-3 gap-8 w-full">
-          <img src="../assets/images/dursia1.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia2.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia3.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
+          <img src="../assets/images/dursia1.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia2.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia3.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
         </div>
-      </div>
+      </section>
 
       <!-- Row 2 -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
         <div class="grid grid-cols-3 gap-8 w-full">
-          <img src="../assets/images/dursia4.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia5.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia6.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
+          <img src="../assets/images/dursia4.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia5.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia6.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
         </div>
-      </div>
+      </section>
 
       <!-- Row 3 -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
         <div class="grid grid-cols-3 gap-8 w-full">
-          <img src="../assets/images/dursia7.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia8.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
-          <img src="../assets/images/dursia9.png" alt="dursia screenshot" class="mx-auto h-[75vh] object-contain" />
+          <img src="../assets/images/dursia7.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia8.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
+          <img src="../assets/images/dursia9.png" alt="dursia screenshot" class="mx-auto max-h-[75vh] object-contain" />
         </div>
-      </div>
+      </section>
 
       <!-- Row 4 -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
         <div class="flex items-center justify-center gap-12 w-full">
-          <img src="../assets/images/dursia10.png" alt="dursia screenshot" class="h-[75vh] object-contain max-w-[28%]" />
-          <img src="../assets/images/dursia11.png" alt="dursia screenshot" class="h-[75vh] object-contain max-w-[28%]" />
+          <img src="../assets/images/dursia10.png" alt="dursia screenshot" class="max-h-[75vh] object-contain max-w-[28%]" />
+          <img src="../assets/images/dursia11.png" alt="dursia screenshot" class="max-h-[75vh] object-contain max-w-[28%]" />
         </div>
-      </div>
+      </section>
 
       <!-- Logo section -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
         <a href="/" class="max-w-[40%] block">
           <Image class="object-contain" src={dursiaLogo} alt="dursia logo" />
         </a>
-      </div>
+      </section>
 
       <!-- Poster section -->
-      <div class="snap-start min-h-screen flex items-center justify-center py-10">
-        <img src="../assets/images/DURSIA-art-nouveau-poster.jpeg" alt="DURSIA art nouveau poster" class="h-[75vh] object-contain" />
-      </div>
+      <section class="snap-start snap-always h-[100dvh] flex items-center justify-center py-6">
+        <img src="../assets/images/DURSIA-art-nouveau-poster.jpeg" alt="DURSIA art nouveau poster" class="max-h-[75vh] object-contain rounded-lg shadow-xl" />
+      </section>
     </div>
 
     <!-- Tilbage-knap -->
@@ -85,3 +127,25 @@ import IconButton from "../components/IconButton.astro";
     </IconButton>
   </main>
 </MainLayout>
+
+<!-- SCRIPT DER SIKRER TASTENTRYK PÅ PILETASTER OG AUTO-FOKUS -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("feature-scroll-container");
+    if (!container) return;
+
+    // Sæt fokus på containeren med det samme så piletaster virker med det samme
+    container.focus();
+
+    // Håndter piletaster direkte via JS for 100% stabilitet
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "PageDown") {
+        e.preventDefault();
+        container.scrollBy({ top: container.clientHeight, behavior: "smooth" });
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        e.preventDefault();
+        container.scrollBy({ top: -container.clientHeight, behavior: "smooth" });
+      }
+    });
+  });
+</script>
