@@ -117,20 +117,19 @@ import MainLayout from "../layouts/MainLayout.astro";
   </main>
 
   <style>
-    /* 1. MOBIL PORTRAIT (STÅENDE) */
+    /* 1. MOBIL PORTRAIT (STÅENDE): Rektangulært 4:3 format uden mærkelige rammer */
     .video-item {
-      /* Laver et mere rektangulært udtryk (viser mere af siderne end den høje boks) */
       height: auto;
       width: 88vw;
       max-width: 380px;
-      aspect-ratio: 4 / 3; /* Perfekt mellemting: bredere end kvadratisk, men ikke helt 16:9 */
+      aspect-ratio: 4 / 3;
       border-radius: 14px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
       display: block;
-      object-fit: cover; /* Fyld beholderen helt ud – INGEN tomme felter/rammer! */
+      object-fit: cover;
     }
 
-    /* 2. DESKTOP (1024px OG OP): Dine oprindelige 41vh */
+    /* 2. DESKTOP (1024px OG OP): Bevarer dine 41vh */
     @media (min-width: 1024px) {
       .video-item {
         height: clamp(240px, 41vh, 340px) !important;
@@ -156,7 +155,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         gap: 1.5rem !important;
       }
 
-      /* Tekstbokse på række */
+      /* TOP TEKSTBOKSE: Lægges pænt på række */
       main > div:first-child {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -184,18 +183,39 @@ import MainLayout from "../layouts/MainLayout.astro";
         padding: 0.5rem 0.85rem !important;
       }
 
-      /* Knapper på række */
-      main > div:last-of-type {
-        flex-direction: row !important;
-        gap: 1rem !important;
-      }
-
+      /* VIDEO */
       .video-item {
-        height: 50vh !important;
-        max-height: 220px !important;
+        height: 48vh !important;
+        max-height: 210px !important;
         width: auto !important;
         aspect-ratio: auto !important;
         object-fit: cover !important;
+      }
+
+      /* BOTTOM KNAPPER: Rammer direkte div'en der indeholder 'Demo' knappen */
+      a[href="/demo"] {
+        display: inline-flex !important;
+      }
+
+      /* Tvinger forældre-containeren til knapperne til flex-row */
+      main > div:has(a[href="/demo"]) {
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        margin-top: 0.5rem !important;
+      }
+
+      /* Tilpasser knappe-størrelserne så de ikke overfylder bredden */
+      main > div:has(a[href="/demo"]) a,
+      main > div:has(a[href="/demo"]) button {
+        width: auto !important;
+        min-width: 120px !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        font-size: 0.875rem !important;
       }
     }
   </style>
