@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="DURSIA – A dating app for introverts">
-  <!-- På mobil og landscape tillader vi vertikal scroll/flex-col; på desktop (lg) bevares h-screen og overflow-hidden uden scroll -->
+  <!-- Main container -->
   <main class="relative w-full min-h-screen lg:h-screen lg:overflow-hidden flex flex-col justify-between py-6 lg:py-0">
     <!-- TOP TEXT BOXES -->
     <div class="relative lg:absolute lg:top-6 left-0 right-0 z-30 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-6 px-4 lg:px-8">
@@ -17,10 +17,21 @@ import MainLayout from "../layouts/MainLayout.astro";
 
       <!-- Large center (Forklaring) -->
       <div
-        class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 lg:px-6 py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20"
+        id="expandable-text-box"
+        class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/50 to-blue-600/50 backdrop-blur-md px-4 lg:px-6 pt-3.5 pb-7 lg:py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20 cursor-pointer lg:cursor-default select-none relative transition-all duration-300 ease-in-out"
       >
-        A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through fun, non-binding and safe treasure
-        hunts, before meeting face to&nbsp;face.
+        <!-- Teksten har INGEN line-clamp i HTML. CSS styrer mobil-afskæringen nedenfor! -->
+        <p id="text-content" class="transition-all duration-300">
+          A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through fun, non-binding and safe
+          treasure hunts, before meeting face to&nbsp;face.
+        </p>
+
+        <!-- Pilen visning: Skjules automatisk helt på lg skærme -->
+        <div id="expand-arrow-wrapper" class="absolute bottom-1.5 left-0 right-0 flex lg:hidden justify-center items-center pointer-events-none">
+          <svg id="expand-arrow" class="w-5 h-5 text-white/90 transform transition-transform duration-300 ease-in-out animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
       </div>
 
       <!-- Small right (Get out...) -->
@@ -117,7 +128,36 @@ import MainLayout from "../layouts/MainLayout.astro";
   </main>
 
   <style>
-    /* 1. MOBIL PORTRAIT (STÅENDE): Rektangulært 4:3 format uden mærkelige rammer */
+    /* ------------------------------------------------------------- */
+    /* MOBIL LODRET (< 1024px): AFSKÆRING TIL 2 LINJER OG EXPAND    */
+    /* ------------------------------------------------------------- */
+    @media (max-width: 1023px) and (orientation: portrait) {
+      /* Når teksten er lukket sammen på mobil */
+      #text-content.mobile-collapsed {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    /* ------------------------------------------------------------- */
+    /* DESKTOP OG VANDRET VIEW (1024px+): ALDRIG BEGRÆNSNING ELLER PIL */
+    /* ------------------------------------------------------------- */
+    @media (min-width: 1024px) {
+      #text-content {
+        display: block !important;
+        overflow: visible !important;
+        -webkit-line-clamp: none !important;
+        height: auto !important;
+      }
+
+      #expand-arrow-wrapper {
+        display: none !important;
+      }
+    }
+
+    /* VIDEO REGULERING */
     .video-item {
       height: auto;
       width: 88vw;
@@ -129,7 +169,6 @@ import MainLayout from "../layouts/MainLayout.astro";
       object-fit: cover;
     }
 
-    /* 2. DESKTOP (1024px OG OP): Bevarer dine 41vh */
     @media (min-width: 1024px) {
       .video-item {
         height: clamp(240px, 41vh, 340px) !important;
@@ -140,7 +179,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       }
     }
 
-    /* 3. MOBIL LANDSCAPE (LIGGENDE MOBIL) */
+    /* MOBIL LANDSCAPE (LIGGENDE MOBIL) */
     @media (orientation: landscape) and (max-width: 1023px) {
       main {
         height: auto !important;
@@ -155,7 +194,6 @@ import MainLayout from "../layouts/MainLayout.astro";
         gap: 1.5rem !important;
       }
 
-      /* TOP TEKSTBOKSE: Lægges pænt på række */
       main > div:first-child {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -183,7 +221,16 @@ import MainLayout from "../layouts/MainLayout.astro";
         padding: 0.5rem 0.85rem !important;
       }
 
-      /* VIDEO */
+      #text-content {
+        display: block !important;
+        overflow: visible !important;
+        -webkit-line-clamp: none !important;
+      }
+
+      #expand-arrow-wrapper {
+        display: none !important;
+      }
+
       .video-item {
         height: 48vh !important;
         max-height: 210px !important;
@@ -192,12 +239,10 @@ import MainLayout from "../layouts/MainLayout.astro";
         object-fit: cover !important;
       }
 
-      /* BOTTOM KNAPPER: Rammer direkte div'en der indeholder 'Demo' knappen */
       a[href="/demo"] {
         display: inline-flex !important;
       }
 
-      /* Tvinger forældre-containeren til knapperne til flex-row */
       main > div:has(a[href="/demo"]) {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -208,7 +253,6 @@ import MainLayout from "../layouts/MainLayout.astro";
         margin-top: 0.5rem !important;
       }
 
-      /* Tilpasser knappe-størrelserne så de ikke overfylder bredden */
       main > div:has(a[href="/demo"]) a,
       main > div:has(a[href="/demo"]) button {
         width: auto !important;
@@ -221,71 +265,110 @@ import MainLayout from "../layouts/MainLayout.astro";
   </style>
 
   <script>
-    const video = document.querySelector("video");
-    if (video) {
-      video.muted = true;
-      video.playsInline = true;
-      video.play().catch(() => {
-        document.body.addEventListener("click", () => video.play(), { once: true });
-      });
-    }
-
-    const openBtn = document.getElementById("open-signup");
-    const closeBtn = document.getElementById("close-signup");
-    const modal = document.getElementById("signup-modal");
-    const form = document.getElementById("signup-form") as HTMLFormElement | null;
-    const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-
-    openBtn?.addEventListener("click", () => {
-      modal?.classList.remove("hidden");
-      modal?.classList.add("flex");
-    });
-
-    closeBtn?.addEventListener("click", () => {
-      modal?.classList.add("hidden");
-      modal?.classList.remove("flex");
-    });
-
-    modal?.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-      }
-    });
-
-    form?.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Sending...";
-      }
-
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: formData,
-          headers: { Accept: "application/json" },
+    const setupIndex = () => {
+      // 1. VIDEO AUTOPLAY LOGIK
+      const video = document.querySelector("video");
+      if (video) {
+        video.muted = true;
+        video.playsInline = true;
+        video.play().catch(() => {
+          document.body.addEventListener("click", () => video.play(), { once: true });
         });
-
-        if (response.ok) {
-          alert("Thank you! We'll notify you when DURSIA is ready.");
-          form.reset();
-          modal?.classList.add("hidden");
-          modal?.classList.remove("flex");
-        } else {
-          alert("Oops! There was a problem submitting your form. Please try again.");
-        }
-      } catch (error) {
-        alert("Oops! There was a network error. Please try again.");
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = "Notify me";
-        }
       }
-    });
+
+      // 2. TEKSTBOKS EXPAND LOGIK (KUN MOBIL PORTRAIT)
+      const textBox = document.getElementById("expandable-text-box");
+      const textContent = document.getElementById("text-content");
+      const expandArrowWrapper = document.getElementById("expand-arrow-wrapper");
+
+      if (textBox && textContent && expandArrowWrapper) {
+        // Start med at lukke teksten på mobil
+        if (window.innerWidth < 1024) {
+          textContent.classList.add("mobile-collapsed");
+        }
+
+        textBox.addEventListener("click", () => {
+          // Kør KUN hvis skærmen er i lodret mobil-view (< 1024px)
+          if (window.innerWidth < 1024) {
+            const isCollapsed = textContent.classList.contains("mobile-collapsed");
+
+            if (isCollapsed) {
+              // Fold ud
+              textContent.classList.remove("mobile-collapsed");
+              expandArrowWrapper.classList.add("hidden");
+              expandArrowWrapper.classList.remove("flex");
+            } else {
+              // Fold sammen
+              textContent.classList.add("mobile-collapsed");
+              expandArrowWrapper.classList.remove("hidden");
+              expandArrowWrapper.classList.add("flex");
+            }
+          }
+        });
+      }
+
+      // 3. SIGNUP MODAL LOGIK
+      const openBtn = document.getElementById("open-signup");
+      const closeBtn = document.getElementById("close-signup");
+      const modal = document.getElementById("signup-modal");
+      const form = document.getElementById("signup-form") as HTMLFormElement | null;
+      const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+      openBtn?.addEventListener("click", () => {
+        modal?.classList.remove("hidden");
+        modal?.classList.add("flex");
+      });
+
+      closeBtn?.addEventListener("click", () => {
+        modal?.classList.add("hidden");
+        modal?.classList.remove("flex");
+      });
+
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+      });
+
+      form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerText = "Sending...";
+        }
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            alert("Thank you! We'll notify you when DURSIA is ready.");
+            form.reset();
+            modal?.classList.add("hidden");
+            modal?.classList.remove("flex");
+          } else {
+            alert("Oops! There was a problem submitting your form. Please try again.");
+          }
+        } catch (error) {
+          alert("Oops! There was a network error. Please try again.");
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Notify me";
+          }
+        }
+      });
+    };
+
+    // Kør ved load og Astro View Transitions
+    document.addEventListener("DOMContentLoaded", setupIndex);
+    document.addEventListener("astro:page-load", setupIndex);
   </script>
 </MainLayout>
