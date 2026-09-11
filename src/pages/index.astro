@@ -22,8 +22,8 @@ import MainLayout from "../layouts/MainLayout.astro";
       >
         <!-- Teksten har INGEN line-clamp i HTML. CSS styrer mobil-afskæringen nedenfor! -->
         <p id="text-content" class="transition-all duration-300">
-          A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. Passive matches are transformed into AR adventures. You get to know each other through treasure hunts, before meeting
-          face to&nbsp;face.
+          A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. You get to know each other through treasure hunts, before meeting face to face. <br /> Passive matches are transformed into
+          AR&nbsp;adventures.
         </p>
 
         <!-- Pilen visning: Skjules automatisk helt på lg skærme -->
@@ -89,7 +89,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
     <!-- Join Modal -->
     <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div class="bg-white/95 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden">
+      <div class="bg-white/95 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden border border-white/40">
         <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
         <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
 
@@ -100,10 +100,10 @@ import MainLayout from "../layouts/MainLayout.astro";
           <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-3 lg:space-y-4">
             <div>
               <label class="block text-xs lg:text-sm text-gray-600 mb-1">Name</label>
-              <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
+              <input type="text" name="name" required class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
             </div>
 
-            <!-- Reason for signing up -->
+            <!-- Reason -->
             <div>
               <label class="block text-xs lg:text-sm text-gray-600 mb-1.5">Reason</label>
               <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs lg:text-sm text-gray-700">
@@ -124,23 +124,23 @@ import MainLayout from "../layouts/MainLayout.astro";
 
             <div>
               <label class="block text-xs lg:text-sm text-gray-600 mb-1">Comments</label>
-              <textarea name="comments" rows="2" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your skill level/link to work/comments"></textarea>
+              <textarea name="comments" rows="2" class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your skill level / link to work / comments"></textarea>
             </div>
 
             <!-- Phone (1/3) og Email (2/3) på samme linje -->
             <div class="grid grid-cols-3 gap-3">
               <div class="col-span-1">
                 <label class="block text-xs lg:text-sm text-gray-600 mb-1">Phone</label>
-                <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Phone" />
+                <input type="tel" name="phone" class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone" />
               </div>
 
               <div class="col-span-2">
                 <label class="block text-xs lg:text-sm text-gray-600 mb-1">Email</label>
-                <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+                <input type="email" name="email" required class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
               </div>
             </div>
 
-            <button type="submit" class="w-full mt-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Send </button>
+            <button type="submit" class="w-full mt-2 rounded-2xl bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Send </button>
           </form>
         </div>
       </div>
@@ -382,7 +382,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerText = "Notify me";
+          submitBtn.innerText = "Send";
         }
       }
     });
