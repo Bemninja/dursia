@@ -77,27 +77,25 @@ import MainLayout from "../layouts/MainLayout.astro";
         Features
       </a>
 
-      <!-- Sign up button -->
+      <!-- Join button -->
       <button
         id="open-signup"
         class="order-3 lg:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-40 justify-center"
       >
-        <img src="/assets/icons/pencil-icon-white.png" alt="Sign up" class="w-5 h-5 brightness-0 invert" />
-        Sign up
+        <img src="/assets/icons/pencil-icon-white.png" alt="Join" class="w-5 h-5 brightness-0 invert" />
+        Join?
       </button>
     </div>
 
-    <!-- Sign up Modal -->
+    <!-- Join Modal -->
     <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       <div class="bg-white/95 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden">
         <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
         <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
 
         <div class="relative z-10">
-          <h2 class="text-xl lg:text-2xl font-semibold text-gray-900 mb-1 text-center">Get notified</h2>
-          <p class="text-gray-500 text-xs lg:text-sm mb-6 text-center">
-            Leave your details and we’ll let you know,<br />when DURSIA is ready.
-          </p>
+          <h2 class="text-xl lg:text-2xl font-semibold text-gray-900 mb-1 text-center">Join DURSIA?</h2>
+          <p class="text-gray-500 text-xs lg:text-sm mb-5 text-center">Leave your details below:</p>
 
           <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" class="space-y-3 lg:space-y-4">
             <div>
@@ -105,270 +103,292 @@ import MainLayout from "../layouts/MainLayout.astro";
               <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
             </div>
 
+            <!-- Reason for signing up -->
+            <div>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-1.5">Reason</label>
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs lg:text-sm text-gray-700">
+                <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                  <input type="radio" name="reason" value="Programmer" class="text-blue-600 focus:ring-blue-500" />
+                  <span>I'm a programmer</span>
+                </label>
+                <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                  <input type="radio" name="reason" value="Investor" class="text-blue-600 focus:ring-blue-500" />
+                  <span>I'm an investor</span>
+                </label>
+                <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                  <input type="radio" name="reason" value="Other" class="text-blue-600 focus:ring-blue-500" />
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+
             <div>
               <label class="block text-xs lg:text-sm text-gray-600 mb-1">Comments</label>
-              <textarea name="comments" rows="3" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your comments"></textarea>
+              <textarea name="comments" rows="2" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your skill level/link to work/comments"></textarea>
             </div>
 
-            <div>
-              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Phone</label>
-              <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
+            <!-- Phone (1/3) og Email (2/3) på samme linje -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="col-span-1">
+                <label class="block text-xs lg:text-sm text-gray-600 mb-1">Phone</label>
+                <input type="tel" name="phone" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Phone" />
+              </div>
+
+              <div class="col-span-2">
+                <label class="block text-xs lg:text-sm text-gray-600 mb-1">Email</label>
+                <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+              </div>
             </div>
 
-            <div>
-              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Email</label>
-              <input type="email" name="email" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
-            </div>
-
-            <button type="submit" class="w-full mt-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Notify me </button>
+            <button type="submit" class="w-full mt-2 rounded-lg bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Send </button>
           </form>
         </div>
       </div>
     </div>
   </main>
-
-  <style>
-    /* ------------------------------------------------------------- */
-    /* MOBIL LODRET (< 1024px): AFSKÆRING TIL 2 LINJER OG EXPAND    */
-    /* ------------------------------------------------------------- */
-    @media (max-width: 1023px) and (orientation: portrait) {
-      /* Når teksten er lukket sammen på mobil */
-      #text-content.mobile-collapsed {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-    }
-
-    /* ------------------------------------------------------------- */
-    /* DESKTOP OG VANDRET VIEW (1024px+): ALDRIG BEGRÆNSNING ELLER PIL */
-    /* ------------------------------------------------------------- */
-    @media (min-width: 1024px) {
-      #text-content {
-        display: block !important;
-        overflow: visible !important;
-        -webkit-line-clamp: none !important;
-        height: auto !important;
-      }
-
-      #expand-arrow-wrapper {
-        display: none !important;
-      }
-    }
-
-    /* VIDEO REGULERING */
-    .video-item {
-      height: auto;
-      width: 88vw;
-      max-width: 380px;
-      aspect-ratio: 4 / 3;
-      border-radius: 14px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-      display: block;
-      object-fit: cover;
-    }
-
-    @media (min-width: 1024px) {
-      .video-item {
-        height: clamp(240px, 41vh, 340px) !important;
-        width: auto !important;
-        max-width: 85vw !important;
-        aspect-ratio: auto !important;
-        object-fit: cover !important;
-      }
-    }
-
-    /* MOBIL LANDSCAPE (LIGGENDE MOBIL) */
-    @media (orientation: landscape) and (max-width: 1023px) {
-      main {
-        height: auto !important;
-        min-height: 100vh !important;
-        overflow-y: auto !important;
-        padding-top: 1.5rem !important;
-        padding-bottom: 5rem !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 1.5rem !important;
-      }
-
-      main > div:first-child {
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: center !important;
-        align-items: stretch !important;
-        gap: 0.75rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-      }
-
-      main > div:first-child > div:first-child,
-      main > div:first-child > div:last-child {
-        width: 22% !important;
-        max-width: 180px !important;
-        min-width: 140px !important;
-        font-size: 0.75rem !important;
-        padding: 0.5rem 0.75rem !important;
-      }
-
-      main > div:first-child > div:nth-child(2) {
-        width: 52% !important;
-        max-width: 480px !important;
-        font-size: 0.75rem !important;
-        line-height: 1.25 !important;
-        padding: 0.5rem 0.85rem !important;
-      }
-
-      #text-content {
-        display: block !important;
-        overflow: visible !important;
-        -webkit-line-clamp: none !important;
-      }
-
-      #expand-arrow-wrapper {
-        display: none !important;
-      }
-
-      .video-item {
-        height: 48vh !important;
-        max-height: 210px !important;
-        width: auto !important;
-        aspect-ratio: auto !important;
-        object-fit: cover !important;
-      }
-
-      a[href="/demo"] {
-        display: inline-flex !important;
-      }
-
-      main > div:has(a[href="/demo"]) {
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 1rem !important;
-        width: 100% !important;
-        margin-top: 0.5rem !important;
-      }
-
-      main > div:has(a[href="/demo"]) a,
-      main > div:has(a[href="/demo"]) button {
-        width: auto !important;
-        min-width: 120px !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        font-size: 0.875rem !important;
-      }
-    }
-  </style>
-
-  <script>
-    const setupIndex = () => {
-      // 1. VIDEO AUTOPLAY LOGIK
-      const video = document.querySelector("video");
-      if (video) {
-        video.muted = true;
-        video.playsInline = true;
-        video.play().catch(() => {
-          document.body.addEventListener("click", () => video.play(), { once: true });
-        });
-      }
-
-      // 2. TEKSTBOKS EXPAND LOGIK (KUN MOBIL PORTRAIT)
-      const textBox = document.getElementById("expandable-text-box");
-      const textContent = document.getElementById("text-content");
-      const expandArrowWrapper = document.getElementById("expand-arrow-wrapper");
-
-      if (textBox && textContent && expandArrowWrapper) {
-        // Start med at lukke teksten på mobil
-        if (window.innerWidth < 1024) {
-          textContent.classList.add("mobile-collapsed");
-        }
-
-        textBox.addEventListener("click", () => {
-          // Kør KUN hvis skærmen er i lodret mobil-view (< 1024px)
-          if (window.innerWidth < 1024) {
-            const isCollapsed = textContent.classList.contains("mobile-collapsed");
-
-            if (isCollapsed) {
-              // Fold ud
-              textContent.classList.remove("mobile-collapsed");
-              expandArrowWrapper.classList.add("hidden");
-              expandArrowWrapper.classList.remove("flex");
-            } else {
-              // Fold sammen
-              textContent.classList.add("mobile-collapsed");
-              expandArrowWrapper.classList.remove("hidden");
-              expandArrowWrapper.classList.add("flex");
-            }
-          }
-        });
-      }
-
-      // 3. SIGNUP MODAL LOGIK
-      const openBtn = document.getElementById("open-signup");
-      const closeBtn = document.getElementById("close-signup");
-      const modal = document.getElementById("signup-modal");
-      const form = document.getElementById("signup-form") as HTMLFormElement | null;
-      const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-
-      openBtn?.addEventListener("click", () => {
-        modal?.classList.remove("hidden");
-        modal?.classList.add("flex");
-      });
-
-      closeBtn?.addEventListener("click", () => {
-        modal?.classList.add("hidden");
-        modal?.classList.remove("flex");
-      });
-
-      modal?.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-        }
-      });
-
-      form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerText = "Sending...";
-        }
-
-        const formData = new FormData(form);
-
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: { Accept: "application/json" },
-          });
-
-          if (response.ok) {
-            alert("Thank you! We'll notify you when DURSIA is ready.");
-            form.reset();
-            modal?.classList.add("hidden");
-            modal?.classList.remove("flex");
-          } else {
-            alert("Oops! There was a problem submitting your form. Please try again.");
-          }
-        } catch (error) {
-          alert("Oops! There was a network error. Please try again.");
-        } finally {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Notify me";
-          }
-        }
-      });
-    };
-
-    // Kør ved load og Astro View Transitions
-    document.addEventListener("DOMContentLoaded", setupIndex);
-    document.addEventListener("astro:page-load", setupIndex);
-  </script>
 </MainLayout>
+
+<style>
+  /* ------------------------------------------------------------- */
+  /* MOBIL LODRET (< 1024px): AFSKÆRING TIL 2 LINJER OG EXPAND    */
+  /* ------------------------------------------------------------- */
+  @media (max-width: 1023px) and (orientation: portrait) {
+    /* Når teksten er lukket sammen på mobil */
+    #text-content.mobile-collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  /* ------------------------------------------------------------- */
+  /* DESKTOP OG VANDRET VIEW (1024px+): ALDRIG BEGRÆNSNING ELLER PIL */
+  /* ------------------------------------------------------------- */
+  @media (min-width: 1024px) {
+    #text-content {
+      display: block !important;
+      overflow: visible !important;
+      -webkit-line-clamp: none !important;
+      height: auto !important;
+    }
+
+    #expand-arrow-wrapper {
+      display: none !important;
+    }
+  }
+
+  /* VIDEO REGULERING */
+  .video-item {
+    height: auto;
+    width: 88vw;
+    max-width: 380px;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    display: block;
+    object-fit: cover;
+  }
+
+  @media (min-width: 1024px) {
+    .video-item {
+      height: clamp(240px, 41vh, 340px) !important;
+      width: auto !important;
+      max-width: 85vw !important;
+      aspect-ratio: auto !important;
+      object-fit: cover !important;
+    }
+  }
+
+  /* MOBIL LANDSCAPE (LIGGENDE MOBIL) */
+  @media (orientation: landscape) and (max-width: 1023px) {
+    main {
+      height: auto !important;
+      min-height: 100vh !important;
+      overflow-y: auto !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 1.5rem !important;
+    }
+
+    main > div:first-child {
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+      gap: 0.75rem !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    main > div:first-child > div:first-child,
+    main > div:first-child > div:last-child {
+      width: 22% !important;
+      max-width: 180px !important;
+      min-width: 140px !important;
+      font-size: 0.75rem !important;
+      padding: 0.5rem 0.75rem !important;
+    }
+
+    main > div:first-child > div:nth-child(2) {
+      width: 52% !important;
+      max-width: 480px !important;
+      font-size: 0.75rem !important;
+      line-height: 1.25 !important;
+      padding: 0.5rem 0.85rem !important;
+    }
+
+    #text-content {
+      display: block !important;
+      overflow: visible !important;
+      -webkit-line-clamp: none !important;
+    }
+
+    #expand-arrow-wrapper {
+      display: none !important;
+    }
+
+    .video-item {
+      height: 48vh !important;
+      max-height: 210px !important;
+      width: auto !important;
+      aspect-ratio: auto !important;
+      object-fit: cover !important;
+    }
+
+    a[href="/demo"] {
+      display: inline-flex !important;
+    }
+
+    main > div:has(a[href="/demo"]) {
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      width: 100% !important;
+      margin-top: 0.5rem !important;
+    }
+
+    main > div:has(a[href="/demo"]) a,
+    main > div:has(a[href="/demo"]) button {
+      width: auto !important;
+      min-width: 120px !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      font-size: 0.875rem !important;
+    }
+  }
+</style>
+
+<script>
+  const setupIndex = () => {
+    // 1. VIDEO AUTOPLAY LOGIK
+    const video = document.querySelector("video");
+    if (video) {
+      video.muted = true;
+      video.playsInline = true;
+      video.play().catch(() => {
+        document.body.addEventListener("click", () => video.play(), { once: true });
+      });
+    }
+
+    // 2. TEKSTBOKS EXPAND LOGIK (KUN MOBIL PORTRAIT)
+    const textBox = document.getElementById("expandable-text-box");
+    const textContent = document.getElementById("text-content");
+    const expandArrowWrapper = document.getElementById("expand-arrow-wrapper");
+
+    if (textBox && textContent && expandArrowWrapper) {
+      // Start med at lukke teksten på mobil
+      if (window.innerWidth < 1024) {
+        textContent.classList.add("mobile-collapsed");
+      }
+
+      textBox.addEventListener("click", () => {
+        // Kør KUN hvis skærmen er i lodret mobil-view (< 1024px)
+        if (window.innerWidth < 1024) {
+          const isCollapsed = textContent.classList.contains("mobile-collapsed");
+
+          if (isCollapsed) {
+            // Fold ud
+            textContent.classList.remove("mobile-collapsed");
+            expandArrowWrapper.classList.add("hidden");
+            expandArrowWrapper.classList.remove("flex");
+          } else {
+            // Fold sammen
+            textContent.classList.add("mobile-collapsed");
+            expandArrowWrapper.classList.remove("hidden");
+            expandArrowWrapper.classList.add("flex");
+          }
+        }
+      });
+    }
+
+    // 3. SIGNUP MODAL LOGIK
+    const openBtn = document.getElementById("open-signup");
+    const closeBtn = document.getElementById("close-signup");
+    const modal = document.getElementById("signup-modal");
+    const form = document.getElementById("signup-form") as HTMLFormElement | null;
+    const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+    openBtn?.addEventListener("click", () => {
+      modal?.classList.remove("hidden");
+      modal?.classList.add("flex");
+    });
+
+    closeBtn?.addEventListener("click", () => {
+      modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
+    });
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    });
+
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending...";
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          alert("Thank you! We'll notify you when DURSIA is ready.");
+          form.reset();
+          modal?.classList.add("hidden");
+          modal?.classList.remove("flex");
+        } else {
+          alert("Oops! There was a problem submitting your form. Please try again.");
+        }
+      } catch (error) {
+        alert("Oops! There was a network error. Please try again.");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Notify me";
+        }
+      }
+    });
+  };
+
+  // Kør ved load og Astro View Transitions
+  document.addEventListener("DOMContentLoaded", setupIndex);
+  document.addEventListener("astro:page-load", setupIndex);
+</script>
