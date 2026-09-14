@@ -56,34 +56,46 @@ import MainLayout from "../layouts/MainLayout.astro";
     </div>
 
     <!-- BOTTOM BUTTONS -->
-    <div class="relative mt-auto pb-6 lg:pb-0 lg:absolute lg:bottom-10 left-0 right-0 z-50 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-14 px-4">
+    <div class="relative mt-auto pb-6 lg:pb-0 lg:absolute lg:bottom-10 left-0 right-0 z-50 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-8 xl:gap-14 px-4">
       <!-- Demo button -->
       <a
         href="/demo"
-        class="order-1 lg:order-1 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-auto lg:min-w-[160px] justify-center"
+        class="glass-card order-1 lg:order-1 relative flex items-center rounded-full bg-gradient-to-r from-blue-900/70 via-blue-700/50 to-cyan-600/40 hover:from-blue-800/90 hover:to-cyan-500/60 backdrop-blur-xl border border-white/20 hover:border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] shadow-xl text-white w-40 lg:w-auto lg:min-w-[165px] h-11 px-5 transition-all duration-300 shrink-0 hover:scale-105 active:scale-95"
       >
-        <span class="text-xl leading-none flex-shrink-0">▶</span>
-        Demo
+        <!-- Fast centreret ikon til venstre -->
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center pointer-events-none">
+          <span class="text-xs leading-none">▶</span>
+        </span>
+        <!-- Tekst -->
+        <span class="w-full text-center text-sm font-medium pl-4">Demo</span>
       </a>
 
       <!-- Features button -->
       <a
         href="/features"
-        class="order-2 lg:order-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-800/80 to-cyan-700/50 hover:from-blue-700/60 hover:to-cyan-600/40 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-auto lg:min-w-[160px] justify-center"
+        class="glass-card order-2 lg:order-3 relative flex items-center rounded-full bg-gradient-to-r from-blue-900/70 via-blue-700/50 to-cyan-600/40 hover:from-blue-800/90 hover:to-cyan-500/60 backdrop-blur-xl border border-white/20 hover:border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] shadow-xl text-white w-40 lg:w-auto lg:min-w-[165px] h-11 px-5 transition-all duration-300 shrink-0 hover:scale-105 active:scale-95"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 flex-shrink-0 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v6H4v-6zm10 0h6v6h-6v-6z"></path>
-        </svg>
-        Features
+        <!-- Fast centreret ikon til venstre -->
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v6H4v-6zm10 0h6v6h-6v-6z"></path>
+          </svg>
+        </span>
+        <!-- Tekst -->
+        <span class="w-full text-center text-sm font-medium pl-4">Features</span>
       </a>
 
       <!-- Join button -->
       <button
         id="open-signup"
-        class="order-3 lg:order-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-800/80 to-rose-500/50 hover:from-red-500/60 hover:to-rose-400/50 backdrop-blur-md border border-white/20 text-white px-8 py-2.5 transition shadow-lg w-45 lg:w-40 justify-center"
+        class="glass-card order-3 lg:order-2 relative flex items-center rounded-full bg-gradient-to-r from-red-900/70 via-rose-700/50 to-rose-500/50 hover:from-red-800/90 hover:to-rose-400/60 backdrop-blur-xl border border-white/20 hover:border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] shadow-xl text-white w-40 lg:w-auto lg:min-w-[165px] h-11 px-5 transition-all duration-300 shrink-0 hover:scale-105 active:scale-95 cursor-pointer"
       >
-        <img src="/assets/icons/pencil-icon-white.png" alt="Join" class="w-5 h-5 brightness-0 invert" />
-        Join?
+        <!-- Fast centreret ikon til venstre -->
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center pointer-events-none">
+          <img src="/assets/icons/pencil-icon-white.png" alt="Join" class="w-4 h-4 brightness-0 invert object-contain" />
+        </span>
+        <!-- Tekst -->
+        <span class="w-full text-center text-sm font-medium pl-4">Join?</span>
       </button>
     </div>
 
@@ -108,15 +120,15 @@ import MainLayout from "../layouts/MainLayout.astro";
               <label class="block text-xs lg:text-sm text-gray-600 mb-1.5">Reason</label>
               <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs lg:text-sm text-gray-700">
                 <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                  <input type="radio" name="reason" value="Programmer" class="text-blue-600 focus:ring-blue-500" />
+                  <input type="radio" name="reason" value="Programmer" required class="text-blue-600 focus:ring-blue-500" />
                   <span>I'm a programmer</span>
                 </label>
                 <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                  <input type="radio" name="reason" value="Investor" class="text-blue-600 focus:ring-blue-500" />
+                  <input type="radio" name="reason" value="Investor" required class="text-blue-600 focus:ring-blue-500" />
                   <span>I'm an investor</span>
                 </label>
                 <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                  <input type="radio" name="reason" value="Other" class="text-blue-600 focus:ring-blue-500" />
+                  <input type="radio" name="reason" value="Other" required class="text-blue-600 focus:ring-blue-500" />
                   <span>Other</span>
                 </label>
               </div>
@@ -124,7 +136,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 
             <div>
               <label class="block text-xs lg:text-sm text-gray-600 mb-1">Comments</label>
-              <textarea name="comments" rows="2" class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your skill level / link to work / comments"></textarea>
+              <textarea name="comments" rows="2" required class="w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Your skill level / link to work / comments"
+              ></textarea>
             </div>
 
             <!-- Phone (1/3) og Email (2/3) på samme linje -->
