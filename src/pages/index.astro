@@ -16,7 +16,7 @@ import MainLayout from "../layouts/MainLayout.astro";
     <div class="relative lg:absolute lg:top-6 left-0 right-0 z-30 flex flex-col lg:flex-row justify-center items-center gap-3 lg:gap-6 px-4 lg:px-8">
       <!-- Small left (DURSIA) -->
       <div
-        class="order-1 lg:order-1 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 py-3 text-white shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20 transition-transform duration-300 ease-out origin-center hover:scale-105 will-change-transform"
+        class="order-1 lg:order-1 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 py-3 text-white shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20 transition-all duration-300 ease-out origin-center hover:scale-105 hover:shadow-[0_16px_32px_rgba(0,0,0,0.5)] will-change-transform"
       >
         <p class="font-semibold text-base lg:text-sm leading-tight">DURSIA</p>
         <p class="text-white/90 text-sm lg:text-sm leading-normal">A dating app for introverts.</p>
@@ -25,7 +25,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       <!-- Large center (Forklaring) -->
       <div
         id="expandable-text-box"
-        class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 pt-3.5 pb-7 lg:py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20 cursor-pointer lg:cursor-default select-none relative transition-transform duration-300 ease-out origin-center hover:scale-105 will-change-transform"
+        class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 pt-3.5 pb-7 lg:py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20 cursor-pointer lg:cursor-default select-none relative transition-all duration-300 ease-out origin-center hover:scale-105 hover:shadow-[0_16px_32px_rgba(0,0,0,0.5)] will-change-transform"
       >
         <p id="text-content" class="mobile-collapsed transition-all duration-300">
           A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. You get to know each other through treasure hunts, before meeting face to face. <br /> Passive matches are transformed into
@@ -41,7 +41,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
       <!-- Small right (Get out...) -->
       <div
-        class="order-3 lg:order-3 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 py-3 text-white text-sm lg:text-sm shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20 transition-transform duration-300 ease-out origin-center hover:scale-105 will-change-transform"
+        class="order-3 lg:order-3 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 py-3 text-white text-sm lg:text-sm shadow-lg w-full max-w-[92vw] lg:w-[250px] min-h-[64px] lg:min-h-[68px] flex flex-col justify-center text-center border border-white/20 transition-all duration-300 ease-out origin-center hover:scale-105 hover:shadow-[0_16px_32px_rgba(0,0,0,0.5)] will-change-transform"
       >
         <p class="leading-snug">Get out · Make routes</p>
         <p class="leading-snug">Cross paths · Find treasures</p>
@@ -51,7 +51,7 @@ import MainLayout from "../layouts/MainLayout.astro";
     <!-- CENTER VIDEO -->
     <div class="relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 my-6 lg:my-0 flex justify-center items-center w-full">
       <div class="animate-video-swing flex justify-center">
-        <div class="transition-transform duration-300 ease-out origin-center hover:scale-115 will-change-transform cursor-pointer">
+        <div class="rounded-xl transition-all duration-300 ease-out origin-center hover:scale-110 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer">
           <video class="video-item" src="/assets/video/dursia-6-shy-videos.mp4" muted loop playsinline autoplay></video>
         </div>
       </div>
