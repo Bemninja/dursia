@@ -28,8 +28,8 @@ import MainLayout from "../layouts/MainLayout.astro";
         class="order-2 lg:order-2 rounded-2xl bg-gradient-to-r from-blue-800/60 to-blue-600/30 backdrop-blur-md px-4 lg:px-6 pt-3.5 pb-7 lg:py-3.5 text-white text-sm lg:text-base shadow-lg w-full max-w-[92vw] lg:max-w-xl text-center leading-relaxed lg:leading-snug border border-white/20 cursor-pointer lg:cursor-default select-none relative transition-all duration-300 ease-out origin-center hover:scale-105 hover:shadow-[0_16px_32px_rgba(0,0,0,0.5)] will-change-transform"
       >
         <p id="text-content" class="mobile-collapsed transition-all duration-300">
-          A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. You get to know each other through treasure hunts, before meeting face to face. <br /> Passive matches are transformed into
-          AR&nbspadventures.
+          A dating app that shows you the strangers, you passed, reconnects you and reduces the nervousness, when you meet again. You safely get to know each other through treasure hunts, before meeting face to face. <br /> Passive matches are transformed
+          into AR&nbspadventures.
         </p>
 
         <div id="expand-arrow-wrapper" class="absolute bottom-1.5 left-0 right-0 flex lg:hidden justify-center items-center pointer-events-none">
@@ -52,7 +52,7 @@ import MainLayout from "../layouts/MainLayout.astro";
     <div class="relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 my-6 lg:my-0 flex justify-center items-center w-full">
       <div class="animate-video-swing flex justify-center">
         <div class="rounded-xl transition-all duration-300 ease-out origin-center hover:scale-110 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer">
-          <video class="video-item" src="/assets/video/dursia-6-shy-videos.mp4" muted loop playsinline autoplay></video>
+          <video class="video-item pointer-events-none select-none" src="/assets/video/dursia-8-shy-videos.mp4" muted loop playsinline autoplay oncontextmenu="return false;"></video>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ import MainLayout from "../layouts/MainLayout.astro";
   </main>
 
   <!-- Join Modal -->
-  <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+  <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-[8000ms] ease-in-out opacity-100">
     <div class="bg-gradient-to-b from-blue-50 via-slate-100 to-blue-200/90 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden border border-white/60">
       <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
       <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
@@ -103,7 +103,6 @@ import MainLayout from "../layouts/MainLayout.astro";
         <h2 class="text-xl lg:text-2xl font-semibold text-gray-900 mb-1 text-center">Join DURSIA?</h2>
         <p class="text-gray-500 text-xs lg:text-sm mb-5 text-center">Leave your details below:</p>
 
-        <!-- novalidate slår browserens automatiske danske tooltips og hover fra -->
         <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" novalidate class="space-y-3 lg:space-y-4">
           <div>
             <label class="block text-xs lg:text-sm text-gray-600 mb-1">Name</label>
@@ -162,6 +161,15 @@ import MainLayout from "../layouts/MainLayout.astro";
           <button type="submit" class="w-full mt-2 rounded-2xl bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Send </button>
         </form>
       </div>
+    </div>
+  </div>
+
+  <!-- Thank You Message Window -->
+  <div id="thank-you-message" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 transition-opacity duration-500 opacity-0 pointer-events-none">
+    <div class="bg-white/90 backdrop-blur-md rounded-2xl p-6 lg:p-8 max-w-sm text-center shadow-2xl border border-white/60">
+      <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">✓</div>
+      <h3 class="text-lg lg:text-xl font-semibold text-gray-900 mb-1">Thank you!</h3>
+      <p class="text-gray-600 text-xs lg:text-sm">Your details have been sent.</p>
     </div>
   </div>
 </MainLayout>
@@ -295,12 +303,32 @@ import MainLayout from "../layouts/MainLayout.astro";
 <script>
   const setupIndex = () => {
     const form = document.getElementById("signup-form");
+    const signupModal = document.getElementById("signup-modal");
+    const modalInner = signupModal ? signupModal.firstElementChild : null;
+    const thankYouMsg = document.getElementById("thank-you-message");
+
+    const openModal = () => {
+      if (!signupModal) return;
+      signupModal.classList.remove("opacity-0", "pointer-events-none");
+      signupModal.classList.add("opacity-100");
+      if (modalInner) modalInner.style.display = "block";
+      signupModal.classList.remove("hidden");
+      signupModal.classList.add("flex");
+    };
+
+    const closeModal = () => {
+      if (!signupModal) return;
+      signupModal.classList.remove("flex");
+      signupModal.classList.add("hidden");
+    };
 
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
         let firstInvalid = null;
 
-        // Tjek navne-felt
+        // Validering
         const nameInput = form.querySelector('input[name="name"]');
         if (nameInput && !nameInput.value.trim()) {
           nameInput.setCustomValidity("Please fill out this field.");
@@ -309,7 +337,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           nameInput.setCustomValidity("");
         }
 
-        // Tjek background radio-knapper
         const backgroundRadios = form.querySelectorAll('input[name="background"]');
         const isRadioChecked = Array.from(backgroundRadios).some((r) => r.checked);
         if (!isRadioChecked && backgroundRadios.length > 0) {
@@ -319,7 +346,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           backgroundRadios.forEach((r) => r.setCustomValidity(""));
         }
 
-        // Tjek kommentarer
         const commentsInput = form.querySelector('textarea[name="comments"]');
         if (commentsInput && !commentsInput.value.trim()) {
           commentsInput.setCustomValidity("Please fill out this field.");
@@ -328,7 +354,6 @@ import MainLayout from "../layouts/MainLayout.astro";
           commentsInput.setCustomValidity("");
         }
 
-        // Tjek email
         const emailInput = form.querySelector('input[name="email"]');
         if (emailInput) {
           const emailVal = emailInput.value.trim();
@@ -344,14 +369,71 @@ import MainLayout from "../layouts/MainLayout.astro";
           }
         }
 
-        // Hvis der er ugyldige felter, stop indsendelse og vis engelsk popup
         if (firstInvalid) {
-          e.preventDefault();
           firstInvalid.reportValidity();
+          return;
+        }
+
+        // Send data i baggrunden via Fetch
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            // 1. Skjul selve formularkortet og nulstil felterne
+            if (modalInner) modalInner.style.display = "none";
+            form.reset();
+
+            // 2. Vis Takke-vinduet
+            if (thankYouMsg) {
+              thankYouMsg.classList.remove("hidden");
+              thankYouMsg.classList.add("flex");
+              setTimeout(() => {
+                thankYouMsg.classList.remove("opacity-0");
+                thankYouMsg.classList.add("opacity-100");
+              }, 10);
+            }
+
+            // 3. Start 5-sekunders glidende fade af baggrunden STRAKS
+            if (signupModal) {
+              signupModal.classList.remove("opacity-100");
+              signupModal.classList.add("opacity-0", "pointer-events-none");
+            }
+
+            // 4. Fade takkeskiltet ud efter 2,5 sekunder (mens baggrundsfaden stadig kører)
+            setTimeout(() => {
+              if (thankYouMsg) {
+                thankYouMsg.classList.remove("opacity-100");
+                thankYouMsg.classList.add("opacity-0");
+              }
+            }, 2500);
+
+            // 5. Opryd og luk alt helt ned efter 5 sekunder (når baggrundsfaden er 100% færdig)
+            setTimeout(() => {
+              if (thankYouMsg) {
+                thankYouMsg.classList.remove("flex");
+                thankYouMsg.classList.add("hidden");
+              }
+              closeModal();
+            }, 8000);
+          } else {
+            alert("Oops! There was a problem submitting your form. Please try again.");
+          }
+        } catch (error) {
+          alert("Oops! There was a network error. Please check your connection.");
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
         }
       });
 
-      // Nulstil fejl så snart brugeren ændrer/skriver i felterne
+      // Nulstil valideringsbeskeder ved ændringer
       form.querySelectorAll("input, textarea").forEach((input) => {
         input.addEventListener("input", () => input.setCustomValidity(""));
         input.addEventListener("change", () => input.setCustomValidity(""));
@@ -401,22 +483,9 @@ import MainLayout from "../layouts/MainLayout.astro";
       window.addEventListener("resize", updateArrowVisibility);
     }
 
-    // Modal Control
+    // Modal Control Events
     const openSignupBtn = document.getElementById("open-signup");
     const closeSignupBtn = document.getElementById("close-signup");
-    const signupModal = document.getElementById("signup-modal");
-
-    const openModal = () => {
-      if (!signupModal) return;
-      signupModal.classList.remove("hidden");
-      signupModal.classList.add("flex");
-    };
-
-    const closeModal = () => {
-      if (!signupModal) return;
-      signupModal.classList.remove("flex");
-      signupModal.classList.add("hidden");
-    };
 
     if (openSignupBtn) openSignupBtn.addEventListener("click", openModal);
     if (closeSignupBtn) closeSignupBtn.addEventListener("click", closeModal);
