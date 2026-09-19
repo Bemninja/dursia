@@ -135,9 +135,10 @@ import MainLayout from "../layouts/MainLayout.astro";
               name="comments"
               rows="2"
               required
-              title="Please fill out this field."
+              minlength="15"
+              title="Please write at least 15 characters."
               class="w-full rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Your skill level / link to work / comments"></textarea>
+              placeholder="Your skill level / link to work / comments (min 15 chars)"></textarea>
           </div>
 
           <div class="grid grid-cols-3 gap-3">
@@ -329,7 +330,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
         let firstInvalid = null;
 
-        // Validering
+        // 1. Validering: Name
         const nameInput = form.querySelector('input[name="name"]');
         if (nameInput && !nameInput.value.trim()) {
           nameInput.setCustomValidity("Please fill out this field.");
@@ -338,6 +339,7 @@ import MainLayout from "../layouts/MainLayout.astro";
           nameInput.setCustomValidity("");
         }
 
+        // 2. Validering: Background (Radio buttons)
         const backgroundRadios = form.querySelectorAll('input[name="background"]');
         const isRadioChecked = Array.from(backgroundRadios).some((r) => r.checked);
         if (!isRadioChecked && backgroundRadios.length > 0) {
@@ -347,14 +349,22 @@ import MainLayout from "../layouts/MainLayout.astro";
           backgroundRadios.forEach((r) => r.setCustomValidity(""));
         }
 
+        // 3. Validering: Comments (Mindst 15 tegn)
         const commentsInput = form.querySelector('textarea[name="comments"]');
-        if (commentsInput && !commentsInput.value.trim()) {
-          commentsInput.setCustomValidity("Please fill out this field.");
-          if (!firstInvalid) firstInvalid = commentsInput;
-        } else if (commentsInput) {
-          commentsInput.setCustomValidity("");
+        if (commentsInput) {
+          const commentVal = commentsInput.value.trim();
+          if (!commentVal) {
+            commentsInput.setCustomValidity("Please fill out this field.");
+            if (!firstInvalid) firstInvalid = commentsInput;
+          } else if (commentVal.length < 15) {
+            commentsInput.setCustomValidity("Please enter at least 15 characters.");
+            if (!firstInvalid) firstInvalid = commentsInput;
+          } else {
+            commentsInput.setCustomValidity("");
+          }
         }
 
+        // 4. Validering: Email
         const emailInput = form.querySelector('input[name="email"]');
         if (emailInput) {
           const emailVal = emailInput.value.trim();
@@ -370,6 +380,7 @@ import MainLayout from "../layouts/MainLayout.astro";
           }
         }
 
+        // Stop formularen hvis der er valideringsfejl
         if (firstInvalid) {
           firstInvalid.reportValidity();
           return;
@@ -388,11 +399,11 @@ import MainLayout from "../layouts/MainLayout.astro";
           });
 
           if (response.ok) {
-            // 1. Skjul selve formularkortet og nulstil felterne
+            // Skjul formularkort og nulstil felter
             if (modalInner) modalInner.style.display = "none";
             form.reset();
 
-            // 2. Vis Takke-vinduet
+            // Vis Takke-vinduet
             if (thankYouMsg) {
               thankYouMsg.classList.remove("hidden");
               thankYouMsg.classList.add("flex");
@@ -402,13 +413,13 @@ import MainLayout from "../layouts/MainLayout.astro";
               }, 10);
             }
 
-            // 3. Start 5-sekunders glidende fade af baggrunden STRAKS
+            // Start glidende fade af baggrunden
             if (signupModal) {
               signupModal.classList.remove("opacity-100");
               signupModal.classList.add("opacity-0", "pointer-events-none");
             }
 
-            // 4. Fade takkeskiltet ud efter 2,5 sekunder (mens baggrundsfaden stadig kører)
+            // Fade takkeskiltet ud efter 2,5 sekunder
             setTimeout(() => {
               if (thankYouMsg) {
                 thankYouMsg.classList.remove("opacity-100");
@@ -416,7 +427,7 @@ import MainLayout from "../layouts/MainLayout.astro";
               }
             }, 2500);
 
-            // 5. Opryd og luk alt helt ned efter 5 sekunder (når baggrundsfaden er 100% færdig)
+            // Opryd og luk alt efter 8 sekunder
             setTimeout(() => {
               if (thankYouMsg) {
                 thankYouMsg.classList.remove("flex");
@@ -434,7 +445,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         }
       });
 
-      // Nulstil valideringsbeskeder ved ændringer
+      // Nulstil valideringsbeskeder ved indtastning
       form.querySelectorAll("input, textarea").forEach((input) => {
         input.addEventListener("input", () => input.setCustomValidity(""));
         input.addEventListener("change", () => input.setCustomValidity(""));
@@ -451,7 +462,7 @@ import MainLayout from "../layouts/MainLayout.astro";
       });
     }
 
-    // Expandable text box
+    // Expandable text box (mobil)
     const textBox = document.getElementById("expandable-text-box");
     const textContent = document.getElementById("text-content");
     const expandArrowWrapper = document.getElementById("expand-arrow-wrapper");

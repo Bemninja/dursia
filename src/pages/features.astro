@@ -130,15 +130,20 @@ import IconButton from "../components/IconButton.astro";
 
 <!-- SCRIPT DER SIKRER TASTENTRYK PÅ PILETASTER OG AUTO-FOKUS -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  const setupFeatures = () => {
     const container = document.getElementById("feature-scroll-container");
     if (!container) return;
 
-    // Sæt fokus på containeren med det samme så piletaster virker med det samme
+    // Sæt fokus på containeren så piletaster virker med det samme
     container.focus();
 
-    // Håndter piletaster direkte via JS for 100% stabilitet
-    window.addEventListener("keydown", (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Tjek om containeren stadig eksisterer i DOM'en
+      if (!document.getElementById("feature-scroll-container")) {
+        window.removeEventListener("keydown", handleKeyDown);
+        return;
+      }
+
       if (e.key === "ArrowDown" || e.key === "PageDown") {
         e.preventDefault();
         container.scrollBy({ top: container.clientHeight, behavior: "smooth" });
@@ -146,6 +151,15 @@ import IconButton from "../components/IconButton.astro";
         e.preventDefault();
         container.scrollBy({ top: -container.clientHeight, behavior: "smooth" });
       }
-    });
-  });
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupFeatures);
+  } else {
+    setupFeatures();
+  }
+  document.addEventListener("astro:page-load", setupFeatures);
 </script>
