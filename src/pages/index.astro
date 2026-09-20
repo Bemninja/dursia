@@ -49,11 +49,11 @@ import MainLayout from "../layouts/MainLayout.astro";
       </div>
     </div>
 
-    <!-- CENTER VIDEO -->
-    <div class="relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 my-6 lg:my-0 flex justify-center items-center w-full">
-      <div class="animate-video-swing flex justify-center">
-        <div class="rounded-xl transition-all duration-300 ease-out origin-center hover:scale-110 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer">
-          <video class="video-item pointer-events-none select-none" src="/assets/video/dursia-8-shy-videos.mp4" muted loop playsinline autoplay oncontextmenu="return false;"></video>
+    <!-- CENTER VIDEO (STRIKT BEGRÆNSET TIL MAX-W-XL OG BREDDEN AF DEN STORE TEKSTBOKS) -->
+    <div class="relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 my-6 lg:my-0 flex justify-center items-center w-full px-4">
+      <div class="animate-video-swing flex justify-center w-full max-w-[92vw] lg:max-w-xl">
+        <div class="w-full rounded-xl transition-all duration-300 ease-out origin-center hover:scale-105 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] will-change-transform cursor-pointer">
+          <video class="video-item pointer-events-none select-none w-full" src="/assets/video/dursia-8-shy-videos.mp4" muted loop playsinline autoplay oncontextmenu="return false;"></video>
         </div>
       </div>
     </div>
@@ -143,7 +143,7 @@ import MainLayout from "../layouts/MainLayout.astro";
               rows="2"
               required
               minlength="15"
-              title="Please write at least 15 characters - e.g. website or portfolio link."
+              title="Please write at least 15 characters."
               class="w-full rounded-xl sm:rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-1.5 sm:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               placeholder="Your skill level / link to work / comments"></textarea>
           </div>
@@ -184,6 +184,16 @@ import MainLayout from "../layouts/MainLayout.astro";
 </MainLayout>
 
 <style>
+  /* Skjul scrollbar for Chrome, Safari og Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Skjul scrollbar for IE, Edge og Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   @media (max-width: 1023px) and (orientation: portrait) {
     #text-content.mobile-collapsed {
       display: -webkit-box;
@@ -207,24 +217,13 @@ import MainLayout from "../layouts/MainLayout.astro";
   }
 
   .video-item {
-    height: auto;
-    width: 88vw;
-    max-width: 380px;
-    aspect-ratio: 4 / 3;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
     border-radius: 14px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     display: block;
     object-fit: cover;
-  }
-
-  @media (min-width: 1024px) {
-    .video-item {
-      height: clamp(240px, 41vh, 340px) !important;
-      width: auto !important;
-      max-width: 85vw !important;
-      aspect-ratio: auto !important;
-      object-fit: cover !important;
-    }
   }
 
   @media (orientation: landscape) and (max-width: 1023px) {
@@ -268,6 +267,12 @@ import MainLayout from "../layouts/MainLayout.astro";
       padding: 0.5rem 0.85rem !important;
     }
 
+    /* Tving videoen i landscape til at matche den midterste tekstboks' bredde (52% / max 480px) */
+    main > div:nth-child(2) > div {
+      width: 52% !important;
+      max-width: 480px !important;
+    }
+
     #text-content {
       display: block !important;
       overflow: visible !important;
@@ -276,14 +281,6 @@ import MainLayout from "../layouts/MainLayout.astro";
 
     #expand-arrow-wrapper {
       display: none !important;
-    }
-
-    .video-item {
-      height: 48vh !important;
-      max-height: 210px !important;
-      width: auto !important;
-      aspect-ratio: auto !important;
-      object-fit: cover !important;
     }
 
     a[href="/demo"] {
