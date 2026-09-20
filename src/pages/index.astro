@@ -358,7 +358,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         if (commentsInput) {
           const commentVal = commentsInput.value.trim();
           if (!commentVal) {
-            commentsInput.setCustomValidity("Please fill out this field.");
+            commentsInput.setCustomValidity("Please write at least 15 characters - e.g. website or portfolio link.");
             if (!firstInvalid) firstInvalid = commentsInput;
           } else if (commentVal.length < 15) {
             commentsInput.setCustomValidity("Please enter at least 15 characters.");
