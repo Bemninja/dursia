@@ -95,25 +95,32 @@ import MainLayout from "../layouts/MainLayout.astro";
   </main>
 
   <!-- Join Modal -->
-  <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-[8000ms] ease-in-out opacity-100">
-    <div class="bg-gradient-to-b from-blue-50 via-slate-100 to-blue-200/90 rounded-2xl p-6 lg:p-8 w-full max-w-md shadow-2xl relative overflow-hidden border border-white/60">
-      <button id="close-signup" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none"> × </button>
+  <div id="signup-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto no-scrollbar transition-all duration-[8000ms] ease-in-out opacity-100">
+    <div class="bg-gradient-to-b from-blue-50 via-slate-100 to-blue-200/90 rounded-2xl p-5 sm:p-6 lg:p-8 w-full max-w-md my-auto shadow-2xl relative border border-white/60 shrink-0">
+      <button id="close-signup" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 text-gray-400 hover:text-gray-700 text-xl leading-none p-1"> × </button>
       <img src="/dursia-logo.png" alt="" class="absolute inset-0 m-auto w-80 opacity-10 pointer-events-none select-none" />
 
       <div class="relative z-10">
-        <h2 class="text-xl lg:text-2xl font-semibold text-gray-900 mb-1 text-center">Join DURSIA?</h2>
-        <p class="text-gray-500 text-xs lg:text-sm mb-5 text-center">Leave your details below:</p>
+        <h2 class="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900 mb-0.5 text-center">Join DURSIA?</h2>
+        <p class="text-gray-500 text-xs sm:text-sm mb-3 sm:mb-5 text-center">Leave your details below:</p>
 
-        <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" novalidate class="space-y-3 lg:space-y-4">
+        <form id="signup-form" action="https://formspree.io/f/xvkpgkra" method="POST" novalidate class="space-y-2.5 sm:space-y-4">
           <div>
-            <label class="block text-xs lg:text-sm text-gray-600 mb-1">Name</label>
-            <input type="text" name="name" required title="Please fill out this field." class="w-full rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
+            <label class="block text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              title="Please fill out this field."
+              class="w-full rounded-xl sm:rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-1.5 sm:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Your name"
+            />
           </div>
 
           <!-- Background -->
           <div>
-            <label class="block text-xs lg:text-sm text-gray-600 mb-1.5">Background</label>
-            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs lg:text-sm text-gray-700">
+            <label class="block text-xs lg:text-sm text-gray-600 mb-1">Background</label>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs lg:text-sm text-gray-700">
               <label class="inline-flex items-center gap-1.5 cursor-pointer">
                 <input type="radio" name="background" value="Programmer" required title="Please select one of these options." class="text-blue-600 focus:ring-blue-500" />
                 <span>Programmer</span>
@@ -130,37 +137,37 @@ import MainLayout from "../layouts/MainLayout.astro";
           </div>
 
           <div>
-            <label class="block text-xs lg:text-sm text-gray-600 mb-1">Comments</label>
+            <label class="block text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Comments</label>
             <textarea
               name="comments"
               rows="2"
               required
               minlength="15"
-              title="Please write at least 15 characters."
-              class="w-full rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              placeholder="Your skill level / link to work / comments (min 15 chars)"></textarea>
+              title="Please write at least 15 characters - e.g. website or portfolio link."
+              class="w-full rounded-xl sm:rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-1.5 sm:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              placeholder="Your skill level / link to work / comments"></textarea>
           </div>
 
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-3 gap-2.5 sm:gap-3">
             <div class="col-span-1">
-              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Phone</label>
-              <input type="tel" name="phone" class="w-full rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone" />
+              <label class="block text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Phone</label>
+              <input type="tel" name="phone" class="w-full rounded-xl sm:rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-1.5 sm:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone" />
             </div>
 
             <div class="col-span-2">
-              <label class="block text-xs lg:text-sm text-gray-600 mb-1">Email</label>
+              <label class="block text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Email</label>
               <input
                 type="email"
                 name="email"
                 required
                 title="Please enter a valid email address."
-                class="w-full rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="w-full rounded-xl sm:rounded-2xl border border-gray-300/80 bg-white/80 px-3 py-1.5 sm:py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Your email"
               />
             </div>
           </div>
 
-          <button type="submit" class="w-full mt-2 rounded-2xl bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2.5 transition text-sm"> Send </button>
+          <button type="submit" class="w-full mt-1.5 sm:mt-2 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 text-white font-medium py-2 sm:py-2.5 transition text-sm"> Send </button>
         </form>
       </div>
     </div>
